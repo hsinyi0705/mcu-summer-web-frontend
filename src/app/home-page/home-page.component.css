@@ -1,0 +1,38 @@
+body {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  height: 100vh; /* 讓容器佔滿整個視窗高度 */
+  margin: 0; /* 移除默認的body邊距 */
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 100px; /* 按鈕之間的距離 */
+  padding: 10px;
+  /* border: solid 1px red; */
+  /* border-radius: 8px; */
+}
+
+button {
+  display: flex;
+  flex-direction: column; /* 改變為column，和span在不同的行 */
+  align-items: center; /* 置中對齊 */
+  border: solid 1px #999; /* 外框 */
+
+  border-radius: 20px;
+  padding: 100px 50px;
+  background-color: #84c1ff;
+  gap: 20px; /* 添加間隔，跟span之間有一點距離 */
+
+  font-size: 80px;
+  color: #fffff4;
+}
+
+span {
+  padding: 0;
+
+  font-size: 60px;
+  color: aliceblue;
+}
