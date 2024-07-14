@@ -1,13 +1,15 @@
-<body>
-  <div class="button-container">
+<div class="button-container">
+  <a [routerLink]="['web-app']" routerLinkActive="router-link-active">
     <button type="button">
       WebApp
       <span>8/12 - 8/15</span>
     </button>
+  </a>
 
+  <a [routerLink]="['temi-class']" routerLinkActive="router-link-active">
     <button type="button">
       Temi 專題
       <span>8/26 - 8/29</span>
     </button>
-  </div>
-</body>
+  </a>
+</div>
