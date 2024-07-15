@@ -1,0 +1,61 @@
+:host {
+  display: block;
+  margin: 0; /* 移除默認的body邊距 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  gap: 100px; /* 按鈕之間的距離 */
+  padding: 10px;
+  /* border: solid 1px red; */
+  /* border-radius: 8px; */
+}
+
+button {
+  display: flex;
+
+  flex-direction: row; /* 改變為column，和span在不同的行 */
+  align-items: center; /* 置中對齊 */
+  border: solid 1px #999; /* 外框 */
+
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #f3efdd;
+  gap: 10px; /* 添加間隔，跟span之間有一點距離 */
+
+  font-size: 20px;
+  color: #bb9a88;
+  font-weight: 600;
+}
+
+a,
+a:hover,
+a:active,
+a:focus {
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: #005cbb1a;
+  border-radius: 15px;
+}
+
+.router-link-active {
+  background-color: #9bb9d633;
+  border-radius: 15px;
+}
+
+span {
+  padding: 0;
+  font-size: 20px;
+  color: #bb9a88;
+}
