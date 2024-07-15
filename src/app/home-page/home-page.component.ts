@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, RouterOutlet],
+  imports: [NavComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })
