@@ -1,3 +1,5 @@
-<app-home-page></app-home-page>
+<app-header (courseSelected)="hideHint()"></app-header>
+
+<div *ngIf="hintShow">請於右上角選擇課程</div>
 
 <router-outlet></router-outlet>

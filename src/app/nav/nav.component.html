@@ -1,17 +1,13 @@
 <div class="button-container">
-  <a [routerLink]="['clear-home']" routerLinkActive="router-link-active">
-    <button type="button">首頁</button>
-  </a>
-
   <a [routerLink]="['web-app']" routerLinkActive="router-link-active">
-    <button type="button">
+    <button type="button" (click)="selectCourse()">
       WebApp
       <span>(8/12 - 8/15)</span>
     </button>
   </a>
 
   <a [routerLink]="['temi-class']" routerLinkActive="router-link-active">
-    <button type="button">
+    <button type="button" (click)="selectCourse()">
       Temi專題
       <span>(8/26 - 8/29)</span>
     </button>
