@@ -1,8 +1,0 @@
-:host {
-  display: flex;
-  margin: 0;
-  padding: 2px 20px;
-  background-color: #e3ebeb;
-  justify-content: space-between; /* 分散對齊 */
-  align-items: center;
-}
