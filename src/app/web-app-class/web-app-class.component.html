@@ -1,1 +1,94 @@
-<p>web-app-class works!</p>
+<div class="container" [formGroup]="form">
+  <table>
+    <tr>
+      <td class="left">
+        <p>ID:</p>
+      </td>
+      <td class="right">
+        <input type="text" formControlName="id" placeholder="id" />
+      </td>
+    </tr>
+
+    <tr>
+      <td class="left">
+        <p>IP:</p>
+      </td>
+      <td class="right">
+        <input type="text" formControlName="ip" placeholder="ip" />
+      </td>
+    </tr>
+
+    <tr>
+      <td class="left">
+        <p>功能:</p>
+      </td>
+      <td class="right">
+        <button type="button" (click)="selectFunc('addLocation')">新增地點</button>
+        <button type="button" (click)="selectFunc('goToLocation')">前往地點</button>
+        <button type="button" (click)="selectFunc('rotate')">旋轉</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="left">
+        <p>參數:</p>
+      </td>
+      <td class="right">
+        <ng-container [ngSwitch]="selectedFunc">
+          <input *ngSwitchCase="'addLocation'" type="text" formControlName="locationName" placeholder="Temi 要記住的新位置名稱" />
+
+          <select *ngSwitchCase="'goToLocation'" formControlName="goToLocation">
+            <option value="">-- 請選擇要前往的地點 --</option>
+          </select>
+
+          <input *ngSwitchCase="'rotate'" type="text" formControlName="rotateAngle" placeholder="Temi 要旋轉的角度" />
+        </ng-container>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!--
+              <tr>
+                  <td className="left">
+                      <p>參數:</p>
+                  </td>
+                  <td className="right">
+                      {func==0||func==2 ?
+                      <select className="input_temi" defaultValue={0} onChangeCapture={(e)=>{setLocation(e.target.value)}}>
+                          <option disabled>請選擇要操作的地點</option>
+                          {
+                              locations.map((e)=>{
+                                  // console.log(typeof e)
+                                  return(
+                                      <option key={e}>{e}</option>
+                                  )
+                              })
+                          }
+                      </select>:null
+                      }
+                      {func==1 ? <input className="input_temi" type="text" placeholder="Temi要說什麼"onChange={(e)=>{setWords(e.target.value)}}/>:null}
+                      {func==3 ? <input className="input_temi" type="text" placeholder="Temi要記住的新位置名稱"onChange={(e)=>{setNewLocation(e.target.value)}}/>:null}
+                      {func==4 ? <><input className="input_temi" type="text" placeholder="X座標"  onChange={(e)=>{setX(e.target.value)}}/>
+                      <input className="input_temi" type="text" placeholder="Y座標" onChange={(e)=>{setY(e.target.value)}}/></>:null}
+                  </td>
+              </tr>
+              <tr>
+                  <td className="left">
+                      <p>狀態:</p>
+                  </td>
+                  <td className="right">
+                      <input className={"input_temi"} type="text" name="status" placeholder="status" defaultValue={prop.status} readOnly/>
+                  </td>
+              </tr>
+              <tr>
+                  <td></td>
+                  <td>
+                      {func==0 ? <button className="submit_action" type="button" id={prop.id} value={"Go"} onClick={click}>GO</button>:null}
+                      {func==1 ? <button className="submit_action" type="button" id={prop.id} value={"Speak"} onClick={click}>Speak</button>:null}
+                      {func==3 ? <button className="submit_action" type="button" id={prop.id} value={"Save"} onClick={click}>Save</button>:null}
+                      {func==2 ? <button className="submit_action" type="button" id={prop.id} value={"Delete"} onClick={click}>Delete</button>:null}
+                      {func==4 ? <button className="submit_action" type="button" id={prop.id} value={"GoPos"} onClick={click}>GO</button>:null}
+                  </td>
+              </tr>
+               -->
