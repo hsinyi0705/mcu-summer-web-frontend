@@ -1,5 +1,8 @@
-<app-header (courseSelected)="hideHint()"></app-header>
-
+<app-header (courseSelected)="hideHint()"> </app-header>
 <div *ngIf="hintShow">請於右上角選擇課程</div>
+
+<!-- <div *ngIf="message">
+  <p>Data from server: {{ message }}</p>
+</div> -->
 
 <router-outlet></router-outlet>
