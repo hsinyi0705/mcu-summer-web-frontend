@@ -1,3 +1,48 @@
 :host {
   display: block;
+  padding: 50px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  border: solid 2px black;
+  border-radius: 15px;
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+table {
+}
+
+td.left {
+  padding-right: 20px; /* 左右元素之間的距離 */
+}
+
+td.right input,
+td.right select {
+  width: 100%;
+}
+
+td.right button {
+  margin-right: 20px; /* 按鈕之間的距離 */
+  padding: 5px; /* 按鈕內部的字和邊框的距離 */
+}
+
+td.center {
+  text-align: center; /* 置中按鈕 */
+}
+
+td.center button {
+  margin-top: 20px; /* 按鈕頂部的距離 */
+  padding: 10px 20px;
+
+  font-size: 20px;
+  border-radius: 10px;
+  border: solid 1px #999;
+  color: #b5a8a0;
+  font-weight: 600;
+  background-color: #e3e8eb;
 }

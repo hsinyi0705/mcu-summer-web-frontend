@@ -2,7 +2,7 @@
   <table>
     <tr>
       <td class="left">
-        <p>ID:</p>
+        <p>Temi ID:</p>
       </td>
       <td class="right">
         <input type="text" formControlName="id" placeholder="id" />
@@ -11,7 +11,7 @@
 
     <tr>
       <td class="left">
-        <p>IP:</p>
+        <p>Temi IP:</p>
       </td>
       <td class="right">
         <input type="text" formControlName="ip" placeholder="ip" />
@@ -42,6 +42,16 @@
           </select>
 
           <input *ngSwitchCase="'rotate'" type="text" formControlName="rotateAngle" placeholder="Temi 要旋轉的角度" />
+        </ng-container>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="2" class="center">
+        <ng-container [ngSwitch]="selectedFunc">
+          <button *ngSwitchCase="'addLocation'" type="run-button">Save</button>
+          <button *ngSwitchCase="'goToLocation'" type="run-button">Go</button>
+          <button *ngSwitchCase="'rotate'" type="run-button">Rotate</button>
         </ng-container>
       </td>
     </tr>
