@@ -26,7 +26,17 @@ td.right select {
   width: 100%;
 }
 
+td.right2 input,
+td.right2 select {
+  width: 100%;
+}
+
 td.right button {
+  margin-right: 20px; /* 按鈕之間的距離 */
+  padding: 5px; /* 按鈕內部的字和邊框的距離 */
+}
+
+td.right2 button {
   margin-right: 20px; /* 按鈕之間的距離 */
   padding: 5px; /* 按鈕內部的字和邊框的距離 */
 }

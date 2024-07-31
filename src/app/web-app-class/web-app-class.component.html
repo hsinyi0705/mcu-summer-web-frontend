@@ -25,7 +25,15 @@
       <td class="right">
         <button type="button" (click)="selectFunc('addLocation')">新增地點</button>
         <button type="button" (click)="selectFunc('goToLocation')">前往地點</button>
-        <button type="button" (click)="selectFunc('rotate')">旋轉</button>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">
+        <p></p>
+      </td>
+      <td class="right2">
+        <button type="button" (click)="selectFunc('deleteLocation')">刪除地點</button>
+        <button type="button" (click)="selectFunc('speak')">說話</button>
       </td>
     </tr>
 
@@ -35,13 +43,16 @@
       </td>
       <td class="right">
         <ng-container [ngSwitch]="selectedFunc">
-          <input *ngSwitchCase="'addLocation'" type="text" formControlName="locationName" placeholder="Temi 要記住的新位置名稱" />
+          <input *ngSwitchCase="'addLocation'" type="text" formControlName="addLocation" placeholder="Temi 要記住的新位置名稱" />
 
           <select *ngSwitchCase="'goToLocation'" formControlName="goToLocation">
             <option value="">-- 請選擇要前往的地點 --</option>
           </select>
 
-          <input *ngSwitchCase="'rotate'" type="text" formControlName="rotateAngle" placeholder="Temi 要旋轉的角度" />
+          <input *ngSwitchCase="'deleteLocation'" type="text" formControlName="deleteLocation" placeholder="Temi 要刪除的位置名稱" />
+
+          <input *ngSwitchCase="'speak'" type="text" formControlName="speak" placeholder="Temi 要說什麼" />
+
         </ng-container>
       </td>
     </tr>
@@ -51,7 +62,8 @@
         <ng-container [ngSwitch]="selectedFunc">
           <button *ngSwitchCase="'addLocation'" type="run-button">Save</button>
           <button *ngSwitchCase="'goToLocation'" type="run-button">Go</button>
-          <button *ngSwitchCase="'rotate'" type="run-button">Rotate</button>
+          <button *ngSwitchCase="'deleteLocation'" type="run-button">Delete</button>
+          <button *ngSwitchCase="'speak'" type="run-button">Speak</button>
         </ng-container>
       </td>
     </tr>
