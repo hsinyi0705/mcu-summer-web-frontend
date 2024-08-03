@@ -47,9 +47,15 @@
 
           <select *ngSwitchCase="'goToLocation'" formControlName="goToLocation">
             <option value="">-- 請選擇要前往的地點 --</option>
+            <option *ngFor="let location of locations" [value]="location">{{location}}</option>
           </select>
 
-          <input *ngSwitchCase="'deleteLocation'" type="text" formControlName="deleteLocation" placeholder="Temi 要刪除的位置名稱" />
+          <select *ngSwitchCase="'deleteLocation'" formControlName="deleteLocation">
+            <option value="">-- 請選擇要刪除的地點 --</option>
+            <option *ngFor="let location of locations" [value]="location">{{location}}</option>
+          </select>
+
+          <!-- <input *ngSwitchCase="'deleteLocation'" type="text" formControlName="deleteLocation" placeholder="Temi 要刪除的位置名稱" /> -->
 
           <input *ngSwitchCase="'speak'" type="text" formControlName="speak" placeholder="Temi 要說什麼" />
         </ng-container>
@@ -59,10 +65,10 @@
     <tr>
       <td colspan="2" class="center">
         <ng-container [ngSwitch]="selectedFunc">
-          <button *ngSwitchCase="'addLocation'" type="run-button" (click)="sendCommand()">Save</button>
-          <button *ngSwitchCase="'goToLocation'" type="run-button" (click)="sendCommand()">Go</button>
-          <button *ngSwitchCase="'deleteLocation'" type="run-button" (click)="sendCommand()">Delete</button>
-          <button *ngSwitchCase="'speak'" type="run-button" (click)="sendCommand()">Speak</button>
+          <button *ngSwitchCase="'addLocation'" type="button" class="run-button" (click)="sendCommand()">Save</button>
+          <button *ngSwitchCase="'goToLocation'" type="button" class="run-button" (click)="sendCommand()">Go</button>
+          <button *ngSwitchCase="'deleteLocation'" type="button" class="run-button" (click)="sendCommand()">Delete</button>
+          <button *ngSwitchCase="'speak'" type="button" class="run-button" (click)="sendCommand()">Speak</button>
         </ng-container>
       </td>
     </tr>

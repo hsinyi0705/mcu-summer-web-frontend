@@ -48,11 +48,16 @@ td.center {
 td.center button {
   margin-top: 20px; /* 按鈕頂部的距離 */
   padding: 10px 20px;
-
   font-size: 20px;
   border-radius: 10px;
   border: solid 1px #999;
   color: #b5a8a0;
   font-weight: 600;
   background-color: #e3e8eb;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+td.center button:hover {
+  background-color: #d1e0e0;
+  color: #333;
 }
