@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO Test</title>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+  </head>
+  <body>
+    <h1>Socket.IO Test</h1>
+    <script>
+      // 创建 Socket.IO 连接
+      const socket = io('http://localhost:5000');
+
+      // 连接成功时的处理
+      socket.on('connect', () => {
+        console.log('Socket.IO connection opened');
+        // 发送测试消息
+        socket.emit('command', { command: 'testCommand', args: 'testArgs' });
+      });
+
+      // 接收到消息时的处理
+      socket.on('response', (data) => {
+        console.log('Message received:', data);
+      });
+
+      // 连接错误时的处理
+      socket.on('error', (error) => {
+        console.error('Socket.IO error:', error);
+      });
+
+      // 连接关闭时的处理
+      socket.on('disconnect', () => {
+        console.log('Socket.IO connection closed');
+      });
+    </script>
+  </body>
+</html>

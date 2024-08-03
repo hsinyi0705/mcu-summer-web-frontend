@@ -52,7 +52,6 @@
           <input *ngSwitchCase="'deleteLocation'" type="text" formControlName="deleteLocation" placeholder="Temi 要刪除的位置名稱" />
 
           <input *ngSwitchCase="'speak'" type="text" formControlName="speak" placeholder="Temi 要說什麼" />
-
         </ng-container>
       </td>
     </tr>
@@ -60,10 +59,10 @@
     <tr>
       <td colspan="2" class="center">
         <ng-container [ngSwitch]="selectedFunc">
-          <button *ngSwitchCase="'addLocation'" type="run-button">Save</button>
-          <button *ngSwitchCase="'goToLocation'" type="run-button">Go</button>
-          <button *ngSwitchCase="'deleteLocation'" type="run-button">Delete</button>
-          <button *ngSwitchCase="'speak'" type="run-button">Speak</button>
+          <button *ngSwitchCase="'addLocation'" type="run-button" (click)="sendCommand()">Save</button>
+          <button *ngSwitchCase="'goToLocation'" type="run-button" (click)="sendCommand()">Go</button>
+          <button *ngSwitchCase="'deleteLocation'" type="run-button" (click)="sendCommand()">Delete</button>
+          <button *ngSwitchCase="'speak'" type="run-button" (click)="sendCommand()">Speak</button>
         </ng-container>
       </td>
     </tr>
