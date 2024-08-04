@@ -1,5 +1,6 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { WebSocketService } from '../websocket.service';
 
@@ -10,7 +11,7 @@ import { WebSocketService } from '../websocket.service';
   templateUrl: './web-app-class.component.html',
   styleUrls: ['./web-app-class.component.css'],
 })
-export class WebAppClassComponent {
+export class WebAppClassComponent implements OnInit {
   form = new FormGroup({
     id: new FormControl(''),
     ip: new FormControl(''),
@@ -23,7 +24,7 @@ export class WebAppClassComponent {
   selectedFunc: string = '';
   locations: string[] = []; // 新增一个数组用于存储地点
 
-  constructor(private webSocketService: WebSocketService) {
+  constructor(private webSocketService: WebSocketService, private http: HttpClient) {
     this.webSocketService.message$.subscribe((message) => {
       console.log('Received message:', message);
       if (message) {
@@ -35,6 +36,17 @@ export class WebAppClassComponent {
         }
       }
     });
+  }
+
+  ngOnInit(): void {
+    this.http.get<{ locations: string[] }>('http://localhost:5000/api/locations').subscribe(
+      (data) => {
+        this.locations = data.locations;
+      },
+      (error) => {
+        console.error('Failed to load locations:', error);
+      }
+    );
   }
 
   selectFunc(functionType: string) {
