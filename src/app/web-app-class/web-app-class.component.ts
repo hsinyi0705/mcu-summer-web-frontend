@@ -42,6 +42,9 @@ export class WebAppClassComponent implements OnInit {
     this.http.get<{ locations: string[] }>('http://localhost:5000/api/locations').subscribe(
       (data) => {
         this.locations = data.locations;
+        // 确保下拉框的初始值设为显示提示字
+        this.form.get('goToLocation')?.setValue('');
+        this.form.get('deleteLocation')?.setValue('');
       },
       (error) => {
         console.error('Failed to load locations:', error);
@@ -59,5 +62,16 @@ export class WebAppClassComponent implements OnInit {
 
     this.webSocketService.sendCommand(command, args);
     // localStorage.setItem('lastCommand', JSON.stringify({ command, args }));
+
+    // 重置表单字段
+    // this.form.get('id')?.reset();
+    // this.form.get('ip')?.reset();
+    this.form.get('addLocation')?.reset();
+    this.form.get('goToLocation')?.setValue(''); // 确保提示字显示
+    this.form.get('deleteLocation')?.setValue(''); // 确保提示字显示
+    this.form.get('speak')?.reset();
+
+    // 可选：重置选中的功能
+    this.selectedFunc = '';
   }
 }
