@@ -30,9 +30,14 @@ export class WebAppClassComponent implements OnInit {
       if (message) {
         // 检查 message 是否为 null 或 undefined
         if (message.command === 'addLocation' && message.status === 'added') {
-          this.locations.push(message.location); // 将新增的地点添加到数组中
+          this.locations.push(message.location);
         } else if (message.command === 'deleteLocation' && message.status === 'deleted') {
-          this.locations = this.locations.filter((loc) => loc !== message.location); // 从数组中删除地点
+          this.locations = this.locations.filter((loc) => loc !== message.location);
+        } else if (message.type === 'onConnect') {
+          this.form.patchValue({
+            id: message.id,
+            ip: message.ip,
+          });
         }
       }
     });
