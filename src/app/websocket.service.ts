@@ -48,7 +48,7 @@ export class WebSocketService {
 
   constructor() {
     this.socket.on('connect', () => {
-      console.log('WebSocket connected');
+      console.log('WebSocket connected!');
     });
 
     this.socket.on('disconnect', () => {
@@ -68,17 +68,14 @@ export class WebSocketService {
         console.warn('Received null or undefined message');
       }
     });
-
-    // Optional: Test message emission
-    // You can use this code to simulate a message for testing purposes
     setTimeout(() => {
-      this.message$.next({ type: 'onConnect', id: "None number", ip: "None number" });
+      this.message$.next({ type: 'onConnect', a_id: "None number", b_ip: "None number" });
     }, 1000);
   }
 
-  sendCommand(command: string, args: any) {
-    console.log('Sending command:', { command, args });
-    this.socket.emit('command', { command, args });
+  sendCommand(command: string, args: any, a_id: any, b_ip: any) {
+    console.log('Sending command:', { command, args, a_id, b_ip });
+    this.socket.emit('command', { command, args, a_id, b_ip });
   }
 }
 

@@ -104,6 +104,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { WebSocketService } from '../websocket.service';
 
+let a_id = "12888";//this
+let b_ip = "456"//this
+
 @Component({
   selector: 'app-web-app-class',
   standalone: true,
@@ -120,37 +123,38 @@ import { WebSocketService } from '../websocket.service';
 //     "status": "Stand by"}}}
 export class WebAppClassComponent implements OnInit {
   form = new FormGroup({
-    ip: new FormControl('ip'),
+    ip: new FormControl(''),
     id: new FormControl(''),
     addLocation: new FormControl(''),
     goToLocation: new FormControl(''),
     deleteLocation: new FormControl(''),
     speak: new FormControl(''),
-    // selectedFunction: new FormControl(''),
-    // location: new FormControl(''),
   });
 
   selectedFunc: string = '';
   locations: string[] = [];
-  messageid = "128";//this
-  messageip = "456"//this
+
   constructor(private webSocketService: WebSocketService, private http: HttpClient) {
     this.webSocketService.message$.subscribe((message) => {
       console.log('Received message in WebAppClassComponent:', message);
       if (message) {
         if (message.type === 'onConnect') {//message.idmessage.ip
-          console.log('Updating form with ID and IP:', this.messageid, this.messageip);
+          console.log('Updating form with ID and IP:', a_id, b_ip);
           this.form.patchValue({
-            id: this.messageid, //message.id,
-            ip: this.messageip,//message.ip,
+            id: a_id, //message.id,
+            ip: b_ip,//message.ip,
+            // id: message.id,
           });
         }
         if (message.command === 'addLocation' && message.status === 'added') {
           this.locations.push(message.location);
-        } else if (message.command === 'deleteLocation' && message.status === 'deleted') {
+          console.log('hihihihi')
+        }
+        else if (message.command === 'deleteLocation' && message.status === 'deleted') {
           this.locations = this.locations.filter((loc) => loc !== message.location);
         }
-      } else {
+      }
+      else {
         console.warn('Received null or undefined message in WebAppClassComponent');
       }
     });
@@ -178,7 +182,7 @@ export class WebAppClassComponent implements OnInit {
     const command = this.selectedFunc;
     const args = this.form.get(this.selectedFunc)?.value || '';
 
-    this.webSocketService.sendCommand(command, args);
+    this.webSocketService.sendCommand(command, args, a_id, b_ip);
 
     this.form.get('addLocation')?.reset();
     this.form.get('goToLocation')?.setValue('');
