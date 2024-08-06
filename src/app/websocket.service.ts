@@ -73,9 +73,9 @@ export class WebSocketService {
     }, 1000);
   }
 
-  sendCommand(command: string, args: any, a_id: any, b_ip: any) {
-    console.log('Sending command:', { command, args, a_id, b_ip });
-    this.socket.emit('command', { command, args, a_id, b_ip });
+  sendCommand(command: string, args: any) {
+    console.log('Sending command:', { command, args});
+    this.socket.emit('command', { command, args});
   }
 }
 

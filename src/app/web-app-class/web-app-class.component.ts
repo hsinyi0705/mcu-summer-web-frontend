@@ -98,14 +98,15 @@
 //   }
 // }
 // //------------------------
+// web-app-class.component.ts
 import { CommonModule, NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { WebSocketService } from '../websocket.service';
 
-let a_id = "12888";//this
-let b_ip = "456"//this
+let a_id = "12888"; // this
+let b_ip = "456";  // this
 
 @Component({
   selector: 'app-web-app-class',
@@ -114,13 +115,6 @@ let b_ip = "456"//this
   templateUrl: './web-app-class.component.html',
   styleUrls: ['./web-app-class.component.css'],
 })
-// {
-// "_default":
-// {"4":
-//   {"id": "8bc4c48f-ffa2-439f-ac47-10f49f4a1d7e",
-//     "ip": "172.16.67.240",
-//     "location": "[home base, \u5165\u53e3, a]",
-//     "status": "Stand by"}}}
 export class WebAppClassComponent implements OnInit {
   form = new FormGroup({
     ip: new FormControl(''),
@@ -138,28 +132,24 @@ export class WebAppClassComponent implements OnInit {
     this.webSocketService.message$.subscribe((message) => {
       console.log('Received message in WebAppClassComponent:', message);
       if (message) {
-        if (message.type === 'onConnect') {//message.idmessage.ip
+        if (message.type === 'onConnect') {
           console.log('Updating form with ID and IP:', a_id, b_ip);
           this.form.patchValue({
-            id: a_id, //message.id,
-            ip: b_ip,//message.ip,
-            // id: message.id,
+            id: a_id,
+            ip: b_ip,
           });
         }
         if (message.command === 'addLocation' && message.status === 'added') {
-          this.locations.push(message.location);
-          console.log('hihihihi')
+          this.locations.push(message.args.location);
+          console.log('Location added:', message.args.location);
+        } else if (message.command === 'deleteLocation' && message.status === 'deleted') {
+          this.locations = this.locations.filter((loc) => loc !== message.args.location);
         }
-        else if (message.command === 'deleteLocation' && message.status === 'deleted') {
-          this.locations = this.locations.filter((loc) => loc !== message.location);
-        }
-      }
-      else {
+      } else {
         console.warn('Received null or undefined message in WebAppClassComponent');
       }
     });
   }
-
 
   ngOnInit(): void {
     this.http.get<{ locations: string[] }>('http://localhost:5000/api/locations').subscribe(
@@ -180,15 +170,26 @@ export class WebAppClassComponent implements OnInit {
 
   sendCommand() {
     const command = this.selectedFunc;
-    const args = this.form.get(this.selectedFunc)?.value || '';
+    const args = {
+      value: this.form.get(this.selectedFunc)?.value || '',
+      a_id: a_id,
+      b_ip: b_ip,
+      addLocation: this.form.get('addLocation')?.value || '',
+      goToLocation: this.form.get('goToLocation')?.value || '',
+      deleteLocation: this.form.get('deleteLocation')?.value || '',
+      speak: this.form.get('speak')?.value || ''
+    };
 
-    this.webSocketService.sendCommand(command, args, a_id, b_ip);
+    // 发送命令及参数
+    this.webSocketService.sendCommand(command, args);
 
+    // 重置表单字段
     this.form.get('addLocation')?.reset();
     this.form.get('goToLocation')?.setValue('');
     this.form.get('deleteLocation')?.setValue('');
     this.form.get('speak')?.reset();
 
+    // 清空选择的功能
     this.selectedFunc = '';
   }
 }
