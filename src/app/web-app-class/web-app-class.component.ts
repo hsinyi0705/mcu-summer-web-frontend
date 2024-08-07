@@ -152,7 +152,7 @@ export class WebAppClassComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<{ locations: string[] }>('http://localhost:5000/api/locations').subscribe(
+    this.http.get<{ locations: string[] }>('http://localhost:5001/api/locations').subscribe(
       (data) => {
         this.locations = data.locations;
         this.form.get('goToLocation')?.setValue('');

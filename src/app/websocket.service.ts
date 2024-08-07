@@ -34,7 +34,13 @@
 //     this.socket.emit('command', { command, args });
 //   }
 // }
-//------------------------------------
+//-----------------------------------
+//-----------------------------------
+//-----------------------------------
+//-----------------------------------
+//-----------------------------------
+
+
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import io from 'socket.io-client';
@@ -43,7 +49,7 @@ import io from 'socket.io-client';
   providedIn: 'root',
 })
 export class WebSocketService {
-  private socket = io('http://localhost:5000'); // WebSocket URL
+  private socket = io('http://172.16.68.10:5001'); // WebSocket URL
   public message$ = new BehaviorSubject<any>(null);
 
   constructor() {
